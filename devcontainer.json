@@ -1,0 +1,13 @@
+{
+  "name": "Twitch + Discord browser",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": { "cpus": 4 },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Browser", "onAutoForward": "openBrowser", "visibility": "private" }
+  },
+  "postAttachCommand": "docker rm -f browser >/dev/null 2>&1; docker run -d --name browser --restart unless-stopped --security-opt seccomp=unconfined --shm-size=1gb -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e TITLE='Twitch + Discord' -e CHROME_CLI='--autoplay-policy=no-user-gesture-required https://www.twitch.tv https://discord.com/app' -v browser-config:/config -p 3000:3000 lscr.io/linuxserver/chromium:latest"
+}

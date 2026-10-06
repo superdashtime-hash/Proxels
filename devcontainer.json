@@ -1,7 +1,0 @@
-{
-  "name": "Web Proxy",
-  "image": "mcr.microsoft.com/devcontainers/python:3",
-  "forwardPorts": [8080],
-  "portsAttributes": { "8080": { "label": "Proxy", "onAutoForward": "openBrowser" } },
-  "postAttachCommand": "nohup python3 proxy.py --host 0.0.0.0 > /tmp/proxy.log 2>&1 &"
-}

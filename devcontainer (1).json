@@ -1,0 +1,11 @@
+{
+  "name": "Scramjet proxy",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "containerEnv": { "PORT": "8080" },
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": { "label": "Proxy", "onAutoForward": "openBrowser", "visibility": "private" }
+  },
+  "postCreateCommand": "npm i -g pnpm && git clone --depth 1 https://github.com/MercuryWorkshop/Scramjet-App app && cd app && pnpm install",
+  "postAttachCommand": "cd app && (nohup pnpm start > /tmp/proxy.log 2>&1 &)"
+}
